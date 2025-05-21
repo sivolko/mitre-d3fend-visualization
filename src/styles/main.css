@@ -1,0 +1,152 @@
+/* Main styles for the D3FEND Matrix Visualization */
+
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Visualization containers */
+.d3fend-matrix-container {
+    width: 100%;
+    height: 500px;
+    overflow: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.digital-artifacts-container {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* D3FEND Matrix styles */
+.matrix-column {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 5px;
+    min-width: 200px;
+}
+
+.matrix-header {
+    font-weight: bold;
+    padding: 10px;
+    background-color: #343a40;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    text-align: center;
+}
+
+.matrix-techniques {
+    border: 1px solid #dee2e6;
+    border-top: none;
+    background-color: #f8f9fa;
+    border-radius: 0 0 4px 4px;
+}
+
+.technique-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.technique-item:hover {
+    background-color: #e9ecef;
+}
+
+.technique-item:last-child {
+    border-bottom: none;
+}
+
+.technique-id {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-right: 5px;
+}
+
+.technique-name {
+    font-size: 0.9em;
+}
+
+.technique-selected {
+    background-color: #cfe2ff;
+    border-left: 3px solid #0d6efd;
+}
+
+/* SVG Visualization Elements */
+.node {
+    cursor: pointer;
+}
+
+.node circle {
+    fill: #fff;
+    stroke: #1f77b4;
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font: 10px sans-serif;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
+}
+
+/* Tactics color scheme */
+.tactic-model {
+    background-color: #8dd3c7;
+}
+
+.tactic-harden {
+    background-color: #ffffb3;
+}
+
+.tactic-detect {
+    background-color: #bebada;
+}
+
+.tactic-isolate {
+    background-color: #fb8072;
+}
+
+.tactic-deceive {
+    background-color: #80b1d3;
+}
+
+.tactic-evict {
+    background-color: #fdb462;
+}
+
+/* Tooltips */
+.d3-tooltip {
+    position: absolute;
+    text-align: left;
+    padding: 8px;
+    font: 12px sans-serif;
+    background: #343a40;
+    color: #fff;
+    border: 0px;
+    border-radius: 4px;
+    pointer-events: none;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .matrix-column {
+        min-width: 150px;
+    }
+    
+    .technique-name {
+        font-size: 0.8em;
+    }
+}
