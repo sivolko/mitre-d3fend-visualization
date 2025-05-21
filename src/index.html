@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITRE D3FEND Matrix Visualization</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">MITRE D3FEND Visualization</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Matrix</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mapping">Mapping</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">MITRE D3FEND Matrix Visualization</h1>
+            <p class="lead">An interactive tool for exploring the MITRE D3FEND Matrix and mapping defensive countermeasures to adversary techniques.</p>
+            <hr class="my-4">
+            <p>Use this tool to identify gaps in your defensive coverage and understand the relationships between attacks, digital artifacts, and defenses.</p>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group mb-3">
+                            <label for="tacticFilter">Filter by Tactic</label>
+                            <select class="form-control" id="tacticFilter">
+                                <option value="all">All Tactics</option>
+                                <option value="model">Model</option>
+                                <option value="harden">Harden</option>
+                                <option value="detect">Detect</option>
+                                <option value="isolate">Isolate</option>
+                                <option value="deceive">Deceive</option>
+                                <option value="evict">Evict</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="searchTechnique">Search Techniques</label>
+                            <input type="text" class="form-control" id="searchTechnique" placeholder="Search by name or ID">
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="showAttackMappings">
+                            <label class="form-check-label" for="showAttackMappings">Show ATT&CK Mappings</label>
+                        </div>
+                        <button id="exportBtn" class="btn btn-primary">Export Current View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>D3FEND Matrix</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="d3fend-matrix-container" class="d3fend-matrix-container">
+                            <!-- D3.js visualization will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4" id="mapping">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Digital Artifacts Bridge</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="digital-artifacts-container" class="digital-artifacts-container">
+                            <!-- D3.js visualization for Digital Artifacts will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Selected Technique Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="technique-details">
+                            <p>Select a technique from the matrix to view details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4" id="about">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>About D3FEND</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>MITRE D3FEND (Detection, Denial, and Disruption Framework Empowering Network Defense) is a knowledge base of cybersecurity countermeasure techniques developed by the MITRE Corporation.</p>
+                        <p>The D3FEND Matrix is organized into six primary tactics:</p>
+                        <ul>
+                            <li><strong>Model</strong>: Apply security engineering, threat, vulnerability, and risk analyses to digital systems</li>
+                            <li><strong>Harden</strong>: Increase the opportunity cost of network exploitation through protective measures</li>
+                            <li><strong>Detect</strong>: Discover if adversaries can access networks or identify unauthorized activity</li>
+                            <li><strong>Isolate</strong>: Create physical or logical barriers in a network to prevent lateral movement</li>
+                            <li><strong>Deceive</strong>: Use deception to redirect attackers away from sensitive systems</li>
+                            <li><strong>Evict</strong>: Remove attacker access and presence from compromised systems</li>
+                        </ul>
+                        <p>For more information, visit the <a href="https://d3fend.mitre.org/" target="_blank">MITRE D3FEND website</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">MITRE D3FEND Matrix Visualization Tool &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../node_modules/d3/dist/d3.min.js"></script>
+    <script src="./js/d3fend-data.js"></script>
+    <script src="./js/matrix-visualization.js"></script>
+    <script src="./js/digital-artifacts.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
